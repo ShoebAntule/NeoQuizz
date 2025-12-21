@@ -1,0 +1,142 @@
+/* ============================
+   GLOBAL MOBILE-FIRST STYLES
+   ============================ */
+
+   html, body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* -------- HERO / JUMBOTRON -------- */
+  .jumbotron {
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .jumbotron h1 {
+    font-size: 1.8rem;
+  }
+  
+  .jumbotron .lead {
+    font-size: 1rem;
+  }
+  
+  .jumbotron .btn {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  
+  /* -------- FORMS -------- */
+  .login-form,
+  .signup-form {
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+  
+  .form-control,
+  .btn {
+    font-size: 0.95rem;
+  }
+  
+  /* -------- DASHBOARD CARDS -------- */
+  .order-card {
+    margin-bottom: 1rem;
+  }
+  
+  .card-block {
+    padding: 1rem;
+  }
+  
+  /* -------- TABLES -------- */
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    font-size: 0.85rem;
+  }
+  
+  /* -------- SIDEBAR (MOBILE) -------- */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 240px;
+    height: 100vh;
+    transition: left 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .content {
+    margin-left: 0;
+    padding: 1rem;
+  }
+  
+  /* Toggle sidebar */
+  #sidebarToggle:checked ~ .sidebar {
+    left: 0;
+  }
+  
+  /* ============================
+     TABLET (≥ 576px)
+     ============================ */
+  @media (min-width: 576px) {
+    .jumbotron h1 {
+      font-size: 2.2rem;
+    }
+  
+    .jumbotron .btn {
+      width: auto;
+    }
+  
+    .table-responsive {
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* ============================
+     TABLET / SMALL DESKTOP (≥ 768px)
+     ============================ */
+  @media (min-width: 768px) {
+    .sidebar {
+      left: 0;
+      width: 240px;
+    }
+  
+    .content {
+      margin-left: 240px;
+      padding: 2rem;
+    }
+  
+    .order-card {
+      margin-bottom: 1.5rem;
+    }
+  }
+  
+  /* ============================
+     DESKTOP (≥ 992px)
+     ============================ */
+  @media (min-width: 992px) {
+    .jumbotron {
+      padding: 4rem 2rem;
+    }
+  
+    .jumbotron h1 {
+      font-size: 2.8rem;
+    }
+  
+    .table-responsive {
+      font-size: 1rem;
+    }
+  }
+  
+  /* ============================
+     ACCESSIBILITY
+     ============================ */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition: none !important;
+    }
+  }
+  

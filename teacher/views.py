@@ -110,8 +110,8 @@ def generate_mcqs(request):
     if request.method == "POST":
         topic = request.POST.get('topic', '')
         client = openai.Client(
-            base_url="https://models.inference.ai.azure.com",
-            api_key="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",
+            base_url=settings.AI_API_URLS.get(settings.AI_PROVIDER, 'https://models.inference.ai.azure.com'),
+            api_key=settings.AI_API_KEYS.get(settings.AI_PROVIDER, ''),
         )
 
         prompt = f"""Generate 5 multiple-choice questions about {topic} with:

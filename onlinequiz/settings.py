@@ -13,14 +13,14 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 # AI Configuration
-AI_PROVIDER = 'azure'  # Using Azure OpenAI endpoint
+AI_PROVIDER = os.environ.get('AI_PROVIDER', 'azure')  # Using Azure OpenAI endpoint
 AI_API_KEYS = {
-    'azure': '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'  # Your GitHub PAT token
+    'azure': os.environ.get('AI_API_KEY_AZURE', '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')  # Your GitHub PAT token
 }
 AI_API_URLS = {
-    'azure': 'https://models.inference.ai.azure.com'
+    'azure': os.environ.get('AI_API_URL_AZURE', 'https://models.inference.ai.azure.com')
 }
-AI_MODEL = 'gpt-4o'  # Using GPT-4o model
+AI_MODEL = os.environ.get('AI_MODEL', 'gpt-4o')  # Using GPT-4o model
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,12 +32,12 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@k0#p3kidu)yaaa3u1hplxz)f@^6xiy384*(+n@@s5x#1bx@m5'
+SECRET_KEY = os.environ.get('SECRET_KEY', '@k0#p3kidu)yaaa3u1hplxz)f@^6xiy384*(+n@@s5x#1bx@m5')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',') if os.environ.get('ALLOWED_HOSTS') else []
 
 # Application definition
 INSTALLED_APPS = [
@@ -60,14 +60,25 @@ AUTHENTICATION_BACKENDS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-CSRF_COOKIE_SECURE=False
+
+# Security settings
+SECURE_SSL_REDIRECT = os.environ.get('SECURE_SSL_REDIRECT', 'True').lower() == 'true'
+SESSION_COOKIE_SECURE = os.environ.get('SESSION_COOKIE_SECURE', 'True').lower() == 'true'
+CSRF_COOKIE_SECURE = os.environ.get('CSRF_COOKIE_SECURE', 'True').lower() == 'true'
+SECURE_HSTS_SECONDS = int(os.environ.get('SECURE_HSTS_SECONDS', '31536000'))
+SECURE_HSTS_INCLUDE_SUBDOMAINS = os.environ.get('SECURE_HSTS_INCLUDE_SUBDOMAINS', 'True').lower() == 'true'
+SECURE_HSTS_PRELOAD = os.environ.get('SECURE_HSTS_PRELOAD', 'True').lower() == 'true'
+SECURE_BROWSER_XSS_FILTER = os.environ.get('SECURE_BROWSER_XSS_FILTER', 'True').lower() == 'true'
+SECURE_CONTENT_TYPE_NOSNIFF = os.environ.get('SECURE_CONTENT_TYPE_NOSNIFF', 'True').lower() == 'true'
+SECURE_REFERRER_POLICY = os.environ.get('SECURE_REFERRER_POLICY', 'strict-origin-when-cross-origin')
 ROOT_URLCONF = 'onlinequiz.urls'
 
 TEMPLATES = [
@@ -89,11 +100,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'onlinequiz.wsgi.application'
 
 # Database
+import dj_database_url
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.config(
+        default='sqlite:///db.sqlite3',
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
 # Password validation
@@ -133,10 +147,10 @@ STATICFILES_DIRS = [STATIC_DIR,]
 LOGIN_REDIRECT_URL='/afterlogin'
 
 # Email settings
-EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'shoebantule18@gmail.com'
-EMAIL_HOST_PASSWORD = 'ssa182358p'
-EMAIL_RECEIVING_USER = ['shoebantule18@gmail.com']
+EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND', 'django.core.mail.backends.smtp.EmailBackend')
+EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.gmail.com')
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True').lower() == 'true'
+EMAIL_PORT = int(os.environ.get('EMAIL_PORT', '587'))
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'shoebantule18@gmail.com')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'ssa182358p')
+EMAIL_RECEIVING_USER = os.environ.get('EMAIL_RECEIVING_USER', 'shoebantule18@gmail.com').split(',')

@@ -12,6 +12,7 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{% static 'css/main.css' %}">
   <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+  <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -41,7 +42,7 @@
   <!--sidebar start-->
   <nav class="sidebar bg-secondary text-white position-fixed vh-100 pt-5">
     <div class="text-center mb-4">
-      <img src="{{ request.user.teacher.profile_pic.url }}" class="profile_image rounded-circle mb-2" alt="Profile Picture">
+      <img src="{% if request.user.teacher.profile_pic %}{{ request.user.teacher.profile_pic.url }}{% else %}{% static 'image/teacher.png' %}{% endif %}" class="profile_image rounded-circle mb-2" alt="Profile Picture">
       <h4>{{request.user.first_name}}</h4>
       <h6>( Teacher )</h6>
     </div>

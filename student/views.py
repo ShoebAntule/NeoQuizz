@@ -322,4 +322,17 @@ def quiz_history_view(request, pk):
         "quiz_histories": quiz_histories,
     }
     return render(request, 'student/quiz_history.html', context)
+
+@login_required(login_url='studentlogin')
+@user_passes_test(is_student)
+def student_update_view(request):
+    student = models.Student.objects.get(user=request.user)
+    if request.method == 'POST':
+        studentForm = forms.StudentForm(request.POST, request.FILES, instance=student)
+        if studentForm.is_valid():
+            studentForm.save()
+            return redirect('student-dashboard')
+    else:
+        studentForm = forms.StudentForm(instance=student)
+    return render(request, 'student/student_update.html', {'studentForm': studentForm})
   
