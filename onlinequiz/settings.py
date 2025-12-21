@@ -154,3 +154,7 @@ EMAIL_PORT = int(os.environ.get('EMAIL_PORT', '587'))
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'shoebantule18@gmail.com')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'ssa182358p')
 EMAIL_RECEIVING_USER = os.environ.get('EMAIL_RECEIVING_USER', 'shoebantule18@gmail.com').split(',')
+
+# Disable email sending in production to prevent worker timeouts on Render Free Tier
+if not DEBUG:
+    EMAIL_BACKEND = "django.core.mail.backends.dummy.EmailBackend"
