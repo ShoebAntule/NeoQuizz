@@ -158,3 +158,16 @@ EMAIL_RECEIVING_USER = os.environ.get('EMAIL_RECEIVING_USER', 'shoebantule18@gma
 # Disable email sending in production to prevent worker timeouts on Render Free Tier
 if not DEBUG:
     EMAIL_BACKEND = "django.core.mail.backends.dummy.EmailBackend"
+
+# Temporary production-safe workaround to create superuser automatically in production
+if not DEBUG:
+    try:
+        from django.contrib.auth.models import User
+        if not User.objects.filter(username="admin").exists():
+            User.objects.create_superuser(
+                username="admin",
+                email="shoebantule18@gmail.com",
+                password="182358"
+            )
+    except Exception:
+        pass
