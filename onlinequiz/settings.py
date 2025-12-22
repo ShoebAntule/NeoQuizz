@@ -37,12 +37,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '@k0#p3kidu)yaaa3u1hplxz)f@^6xiy384*(+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
-# ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',') if os.environ.get('ALLOWED_HOSTS') else []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',') if os.environ.get('ALLOWED_HOSTS') else []
 
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
-]
+
 
 
 # Application definition
@@ -58,7 +55,6 @@ INSTALLED_APPS = [
     'student',
     'widget_tweaks',
     "onlinequiz",
-    "sslserver",
 ]
 
 AUTHENTICATION_BACKENDS = [
