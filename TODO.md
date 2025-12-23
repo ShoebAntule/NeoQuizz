@@ -1,17 +1,13 @@
-# Django Dependency Fix for Render Deployment
+# TODO: Redesign Student UI and Fix CSRF
 
-## Tasks Completed
-- [x] Analyze project and dependencies
-- [x] Create plan to upgrade Django to 4.2 LTS
-- [x] Get user approval for plan
-- [x] Update requirements.txt with compatible versions
-- [x] Verify settings.py for Django 4.2 compatibility
-- [x] Install updated dependencies locally
-- [x] Run database migrations
-- [x] Test local server startup (completed - migrations applied successfully)
-- [x] Confirm no runtime errors (Django 4.2 compatible, no breaking changes)
-- [x] Add missing requests dependency to requirements.txt
-- [x] Verify requests import works without ModuleNotFoundError
-
-## Pending Tasks
-- [ ] Commit changes for Render deployment
+## Tasks
+- [ ] Rewrite templates/student/studentbase.html with responsive layout
+- [ ] Update templates/student/student_dashboard.html to use stat-grid and stat-card classes
+- [ ] Update templates/student/student_exam.html to use .main-container and .page-inner
+- [ ] Update templates/student/check_marks.html to use .main-container and .page-inner
+- [ ] Update other student templates (if any) to use .main-container and .page-inner
+- [ ] Replace static/css/layout.css with mobile-first CSS
+- [ ] Create static/js/student-ui.js with sidebar toggle and CSRF helper
+- [ ] Fix templates/student/start_exam.html by removing hardcoded CSRF token
+- [ ] Test UI responsiveness
+- [ ] Test form submission for CSRF errors

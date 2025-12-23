@@ -2,56 +2,39 @@
 {% block content %}
 {%load static%}
 
-<head>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-  <style media="screen">
-    a:link {
-      text-decoration: none;
-    }
-
-    h6 {
-      text-align: center;
-    }
-
-    .row {
-      margin: 100px;
-    }
-  </style>
-</head>
-<br><br>
-<div class="container">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h6 class="panel-title">View Marks</h6>
+<div class="container-fluid my-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10">
+      <div class="card shadow-sm">
+        <div class="card-header bg-info text-white">
+          <h5 class="card-title mb-0">Your Exam Results</h5>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th class="py-3 px-4">Exam Name</th>
+                  <th class="py-3 px-4 text-center">Total Marks</th>
+                  <th class="py-3 px-4 text-center">Attempt</th>
+                  <th class="py-3 px-4 text-center">Exam Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for t in results %}
+                <tr>
+                  <td class="py-3 px-4">{{ t.exam }}</td>
+                  <td class="py-3 px-4 text-center">{{ t.marks }}</td>
+                  <td class="py-3 px-4 text-center">Attempt {{ forloop.counter }}</td>
+                  <td class="py-3 px-4 text-center">{{ t.date }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
-    <table class="table table-hover" id="dev-table">
-      <thead>
-        <tr>
-
-          <th>Exam Name</th>
-          
-          <th>Total Marks</th>
-          <th>Attempt</th>
-          <th>Exam Date</th>
-        </tr>
-      </thead>
-      {% for t in results %}
-      <tr>
-
-        <td> {{t.exam}}</td>
-        <td> {{t.marks}}</td>
-        <td>Attemp {{ forloop.counter }}</td>
-        <td> {{t.date}}</td>
-        
-        
-      </tr>
-      {% endfor %}
-    </table>
   </div>
 </div>
-
-<br><br><br><br><br><br>
 {% endblock content %}

@@ -6,14 +6,20 @@
     <title></title>
   </head>
   <body>
+    <style>
+      body { text-align: center; padding: 20px; }
+      .logout-container { max-width: 800px; margin: 0 auto; padding-top: 100px; }
+      .logout-image { max-width: 100%; height: auto; display: block; margin: 0 auto 50px; }
+      @media (max-width: 768px) {
+        .logout-container { padding-top: 50px; }
+        .logout-image { margin-bottom: 30px; }
+      }
+    </style>
     {% include "quiz/navbar.html" %}
-    <br><br><br><br><br>
-<img src="{% static "image/logout_img.png" %}"  style="width:800px; height:100px; padding-left:400px;">
-
-<br><br><br><br><br>
-<br><br><br><br><br>
-<br><br>
-{% include "quiz/footer.html" %}
+    <div class="logout-container">
+      <img src="{% static "image/logout_img.png" %}" class="logout-image" alt="Logged Out">
+    </div>
+    {% include "quiz/footer.html" %}
 
   </body>
 </html>

@@ -7,13 +7,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <style media="screen">
-    .jumbotron {
-      margin-top: 0px;
-      margin-bottom: 0px;
+    body {
+      overflow-x: hidden;
     }
 
-    .jumbotron h1 {
+    .auth-center {
+      min-height: calc(100vh - 80px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
+      padding: 20px;
+    }
+
+    .hero-title {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .desc {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .auth-buttons {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .hero-title {
+        font-size: 24px;
+      }
     }
 
   </style>
@@ -23,17 +57,14 @@
 <body>
 
   {% include "quiz/navbar.html" %}
-  <br><br>
-  <div class="jumbotron" style="margin-bottom:0px;">
-    <h1 class="display-4">Hello, Teacher</h1>
-    <p class="lead">Welcome to NeoQuiz</p>
-    <hr class="my-4">
-    <p>You can access various features after Login.</p>
-    <p class="lead">
+  <div class="auth-center">
+    <h1 class="hero-title">Hello, Teacher</h1>
+    <p class="subtitle">Welcome to NeoQuiz</p>
+    <p class="desc">You can access various features after Login.</p>
+    <div class="auth-buttons">
       <a class="btn btn-primary btn-lg" href="teachersignup" role="button">Create Your Account</a>
       <a class="btn btn-primary btn-lg" href="teacherlogin" role="button">Login</a>
-    </p>
-    <br><br><br><br>
+    </div>
   </div>
   {% include "quiz/footer.html" %}
 </body>
