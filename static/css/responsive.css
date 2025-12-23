@@ -174,4 +174,26 @@ html, body {
     transition: none !important;
   }
 }
+
+/* ============================
+   TEACHER MOBILE FIXES
+   ============================ */
+@media (max-width: 768px) {
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  .btn {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .card {
+    margin-bottom: 16px;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+}
   

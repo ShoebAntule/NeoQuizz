@@ -91,6 +91,15 @@ input[type="radio"]{margin-right:8px}
   object-fit: cover;
 }
 
+/* Avatar styles for teacher profile */
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e5e7eb;
+}
+
 /* Mobile responsiveness for teacher and admin */
 @media (max-width: 900px) {
   .sidebar {

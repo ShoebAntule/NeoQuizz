@@ -27,27 +27,29 @@
     <div class="panel-heading">
       <h6 class="panel-title">Questions</h6>
     </div>
-    <table class="table table-hover" id="dev-table">
-      <thead>
+    <div class="table-responsive">
+      <table class="table table-hover" id="dev-table">
+        <thead>
+          <tr>
+
+            <th>Question</th>
+
+            <th>Marks</th>
+            <th>Delete Question</th>
+          </tr>
+        </thead>
+        {% for c in questions %}
         <tr>
 
-          <th>Question</th>
-         
-          <th>Marks</th>
-          <th>Delete Question</th>
-        </tr>
-      </thead>
-      {% for c in questions %}
-      <tr>
+          <td> {{c.question}}</td>
 
-        <td> {{c.question}}</td>
-        
-        <td>{{c.marks}}</td>
-        <td><a class="btn btn-primary btn-xs" href="{% url 'remove-question' c.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
-        
-      </tr>
-      {% endfor %}
-    </table>
+          <td>{{c.marks}}</td>
+          <td><a class="btn btn-primary btn-xs" href="{% url 'remove-question' c.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
   </div>
 </div>
 
